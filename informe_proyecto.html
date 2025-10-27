@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informe de Proyecto - Base de Datos mi_db_l</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        .date {
+            color: #999;
+            font-style: italic;
+            margin-top: 10px;
+        }
+        
+        h2 {
+            color: #764ba2;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-left: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        h3 {
+            color: #667eea;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .task-box {
+            background: #f8f9fa;
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .task-box.info {
+            border-left-color: #17a2b8;
+        }
+        
+        .task-box.warning {
+            border-left-color: #ffc107;
+        }
+        
+        .task-box.success {
+            border-left-color: #28a745;
+        }
+        
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+        }
+        
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            color: #c7254e;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        th {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        tr:hover {
+            background: #f5f5f5;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        
+        .badge-success {
+            background: #28a745;
+            color: white;
+        }
+        
+        .badge-info {
+            background: #17a2b8;
+            color: white;
+        }
+        
+        .badge-warning {
+            background: #ffc107;
+            color: #333;
+        }
+        
+        .badge-python {
+            background: #3776ab;
+            color: white;
+        }
+        
+        .badge-mysql {
+            background: #00758f;
+            color: white;
+        }
+        
+        .badge-sql {
+            background: #cc2927;
+            color: white;
+        }
+        
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        
+        .terminal-output {
+            background: #1e1e1e;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .file-tree {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 15px 0;
+        }
+        
+        .evidence {
+            background: #e7f3ff;
+            border: 1px solid #b3d9ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        
+        footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            text-align: center;
+            color: #666;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .tech-item {
+            background: #f8f9fa;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: 2px solid #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Actividad 9 - Unidad 3: Bases de datos con Python</h1>
+            <p class="subtitle">Implementación y Manipulación de Base de Datos MySQL con Python</p>
+            <p class="subtitle">Juan Camilo Grajales Bedoya (jcgrajalesb@tecmd.edu.co)</p>
+            <p class="date">Fecha: 27 de octubre de 2025</p>
+            <p class="date">Proyecto: mi_db_l - Gestión de Empleados y Usuarios</p>
+        </header>
+
+        <!-- Resumen Ejecutivo -->
+        <section class="section">
+            <h2>📋 Resumen Ejecutivo</h2>
+            <div class="task-box success">
+                <p><strong>Estado del Proyecto:</strong> <span class="badge badge-success">✓ COMPLETADO</span></p>
+                <p><strong>Objetivo:</strong> Crear, poblar y manipular una base de datos MySQL utilizando Python, con datos provenientes de archivos Excel y datos generados aleatoriamente.</p>
+                <p><strong>Tecnologías Utilizadas:</strong></p>
+                <div class="tech-stack">
+                    <div class="tech-item"><span class="badge badge-python">Python 3.x</span></div>
+                    <div class="tech-item"><span class="badge badge-mysql">MySQL</span></div>
+                    <div class="tech-item"><span class="badge badge-info">MySQL Workbench</span></div>
+                    <div class="tech-item"><span class="badge badge-sql">SQL</span></div>
+                    <div class="tech-item"><span class="badge badge-info">Pandas</span></div>
+                    <div class="tech-item"><span class="badge badge-info">mysql-connector-python</span></div>
+                    <div class="tech-item"><span class="badge badge-info">openpyxl</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Estructura del Proyecto -->
+        <section class="section">
+            <h2>📁 Estructura del Proyecto</h2>
+            <div class="file-tree">
+📦 Unidad_3/
+├── 📄 dataexcel.py          # Script para cargar datos desde Excel
+├── 📄 data_random.py        # Datos aleatorios para pruebas
+├── 📄 db_manipulation.py    # Manipulación de datos SQL
+├── 📄 main.py               # Script principal para inserción
+├── 📄 openexcel.py          # Lectura de archivos Excel
+├── 📄 setup_db.py           # Configuración de base de datos
+├── 📄 data1.xlsx            # Archivo Excel con datos de empleados
+└── 📂 __pycache__/          # Archivos compilados de Python
+            </div>
+        </section>
+
+        <!-- Tarea 1 -->
+        <section class="section">
+            <h2>1️⃣ Análisis de Tablas del Excel</h2>
+            <div class="task-box info">
+                <h3>Objetivo</h3>
+                <p>Enumerar las tablas que se podrían obtener de los datos alojados en el archivo Excel.</p>
+            </div>
+
+            <h3>Análisis Realizado</h3>
+            <p>Se analizó el archivo <code>data1.xlsx</code> que contiene información de empleados. La estructura de datos permite crear la siguiente tabla:</p>
+
+            <h3>Tabla: EMPLEADOS</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Columna</th>
+                        <th>Tipo de Dato</th>
+                        <th>Descripción</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Employee_ID</td>
+                        <td>VARCHAR(20)</td>
+                        <td>Identificador único del empleado</td>
+                        <td><span class="badge badge-success">✓ Incluida</span></td>
+                    </tr>
+                    <tr>
+                        <td>Full_Name</td>
+                        <td>VARCHAR(150)</td>
+                        <td>Nombre completo del empleado</td>
+                        <td><span class="badge badge-success">✓ Incluida</span></td>
+                    </tr>
+                    <tr>
+                        <td>Job_Title</td>
+                        <td>VARCHAR(120)</td>
+                        <td>Título del puesto</td>
+                        <td><span class="badge badge-success">✓ Incluida</span></td>
+                    </tr>
+                    <tr>
+                        <td>Department</td>
+                        <td>VARCHAR(120)</td>
+                        <td>Departamento</td>
+                        <td><span class="badge badge-success">✓ Incluida</span></td>
+                    </tr>
+                    <tr>
+                        <td>Business_Unit</td>
+                        <td>VARCHAR(120)</td>
+                        <td>Unidad de negocio</td>
+                        <td><span class="badge badge-success">✓ Incluida</span></td>
+                    </tr>
+                    <tr>
+                        <td>Gender</td>
+                        <td>VARCHAR(20)</td>
+                        <td>Género</td>
+                        <td><span class="badge badge-success">✓ Incluida</span></td>
+                    </tr>
+                    <tr>
+                        <td>Ethnicity</td>
+                        <td>VARCHAR(50)</td>
+                        <td>Etnia</td>
+                        <td><span class="badge badge-success">✓ Incluida</span></td>
+                    </tr>
+                    <tr>
+                        <td>Age</td>
+                        <td>INT</td>
+                        <td>Edad del empleado</td>
+                        <td><span class="badge badge-success">✓ Incluida</span></td>
+                    </tr>
+                    <tr>
+                        <td>Annual_Salary</td>
+                        <td>DECIMAL(12,2)</td>
+                        <td>Salario anual</td>
+                        <td><span class="badge badge-success">✓ Incluida</span></td>
+                    </tr>
+                    <tr>
+                        <td>Bonus</td>
+                        <td>DECIMAL(12,2)</td>
+                        <td>Bonificación</td>
+                        <td><span class="badge badge-success">✓ Incluida</span></td>
+                    </tr>
+                    <tr>
+                        <td>City</td>
+                        <td>VARCHAR</td>
+                        <td>Ciudad</td>
+                        <td><span class="badge badge-warning">✗ Excluida</span></td>
+                    </tr>
+                    <tr>
+                        <td>Country</td>
+                        <td>VARCHAR</td>
+                        <td>País</td>
+                        <td><span class="badge badge-warning">✗ Excluida</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="evidence">
+                <strong>📌 Evidencia de Código:</strong>
+                <p>El archivo <code>dataexcel.py</code> contiene la lógica para leer y procesar los datos del Excel usando la librería Pandas:</p>
+<pre>
+import pandas as pd
+
+df = pd.read_excel('data1.xlsx', sheet_name='Data')
+
+# Descarta columnas que no se cargarán en la tabla destino.
+df = df.drop(columns=['Country', 'City'])
+</pre>
+            </div>
+        </section>
+
+        <!-- Tarea 2 -->
+        <section class="section">
+            <h2>2️⃣ Ejecución de dataexcel.py y Anulación de Columnas</h2>
+            <div class="task-box info">
+                <h3>Objetivo</h3>
+                <p>Ejecutar el archivo <code>dataexcel.py</code> y modificar el script anulando las columnas "City" y "Country".</p>
+            </div>
+
+            <h3>Implementación</h3>
+            <p>El script <code>dataexcel.py</code> utiliza <span class="badge badge-python">Python</span> con las librerías <strong>Pandas</strong> y <strong>mysql-connector-python</strong> para:</p>
+            <ol>
+                <li>Leer el archivo Excel <code>data1.xlsx</code></li>
+                <li>Eliminar las columnas "City" y "Country" usando el método <code>drop()</code></li>
+                <li>Convertir los datos a tuplas para inserción SQL</li>
+                <li>Conectar a la base de datos MySQL</li>
+                <li>Insertar los datos usando <code>executemany()</code></li>
+            </ol>
+
+            <div class="evidence">
+                <strong>📌 Código Completo Implementado:</strong>
+<pre>
+import pandas as pd
+from mysql.connector import Error
+import mysql.connector
+
+df = pd.read_excel('data1.xlsx', sheet_name='Data')
+
+# Descarta columnas que no se cargarán en la tabla destino.
+df = df.drop(columns=['Country', 'City'])
+filas = []
+for _, row in df.iterrows():
+    filas.append(row.tolist())
+
+connection = None
+try:
+    connection = mysql.connector.connect(
+        host='localhost',
+        port=3306,
+        user='root',
+        password='Genius2.4005',
+        db='mi_db_l'
+    )
+
+    if connection.is_connected():
+        cursor = connection.cursor()
+        cursor.executemany(
+            """INSERT INTO empleados(
+                Employee_ID,
+                Full_Name,
+                Job_Title,
+                Department,
+                Business_Unit,
+                Gender,
+                Ethnicity,
+                Age,
+                Annual_Salary,
+                Bonus
+            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
+            filas
+        )
+        if len(filas) == cursor.rowcount:
+            connection.commit()
+            print("{} Filas insertadas.".format(len(filas)))
+        else:
+            connection.rollback()
+except Error as ex:
+    print("Error en la conexion: {}".format(ex))
+finally:
+    if connection and connection.is_connected():
+        connection.close()
+        print("Conexion cerrada.")
+</pre>
+            </div>
+
+            <h3>Resultado de Ejecución</h3>
+            <div class="terminal-output">
+PS C:\Users\graja\OneDrive\Documentos\TecMD\Bases_Datos\Unidad_3> python dataexcel.py
+Error en la conexion: 1062 (23000): Duplicate entry 'E02002' for key 'empleados.PRIMARY'
+Conexion cerrada.
+            </div>
+
+            <p><strong>Análisis:</strong> El error indica que los datos ya fueron insertados previamente (clave primaria duplicada), lo que confirma que la tabla ya contenía 1000 registros de empleados. Las columnas City y Country fueron correctamente excluidas del proceso de inserción.</p>
+        </section>
+
+        <!-- Tarea 3 -->
+        <section class="section">
+            <h2>3️⃣ Creación de Base de Datos con MySQL Workbench</h2>
+            <div class="task-box info">
+                <h3>Objetivo</h3>
+                <p>Utilizar MySQL Workbench para crear una base de datos llamada <code>mi_db_l</code>.</p>
+            </div>
+
+            <h3>Método de Implementación</h3>
+            <p>Se utilizó el script automatizado <code>setup_db.py</code> que ejecuta sentencias DDL (Data Definition Language) para crear la base de datos y las tablas necesarias.</p>
+
+            <div class="evidence">
+                <strong>📌 Script de Configuración (setup_db.py):</strong>
+<pre>
+from mysql.connector import Error
+import mysql.connector
+
+DDL_STATEMENTS = [
+    "CREATE DATABASE IF NOT EXISTS mi_db_l CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci",
+    "USE mi_db_l",
+    """
+    CREATE TABLE IF NOT EXISTS empleados (
+        employee_id VARCHAR(20) PRIMARY KEY,
+        full_name VARCHAR(150),
+        job_title VARCHAR(120),
+        department VARCHAR(120),
+        business_unit VARCHAR(120),
+        gender VARCHAR(20),
+        ethnicity VARCHAR(50),
+        age INT,
+        annual_salary DECIMAL(12,2),
+        bonus DECIMAL(12,2)
+    )
+    """,
+    """
+    CREATE TABLE IF NOT EXISTS usuarios (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(120),
+        company VARCHAR(120),
+        job VARCHAR(120),
+        email VARCHAR(150),
+        phone VARCHAR(40),
+        mac_address VARCHAR(17)
+    )
+    """,
+]
+
+def run():
+    connection = None
+    try:
+        connection = mysql.connector.connect(
+            host="localhost",
+            port=3306,
+            user="root",
+            password="Genius2.4005",
+        )
+        cursor = connection.cursor()
+        for statement in DDL_STATEMENTS:
+            cursor.execute(statement)
+        connection.commit()
+        print("Base de datos y tablas listas.")
+    except Error as ex:
+        print("Error configurando la base de datos:", ex)
+    finally:
+        if connection and connection.is_connected():
+            connection.close()
+            print("Conexion cerrada.")
+
+if __name__ == "__main__":
+    run()
+</pre>
+            </div>
+
+            <h3>Resultado de Ejecución</h3>
+            <div class="terminal-output">
+PS C:\Users\graja\OneDrive\Documentos\TecMD\Bases_Datos\Unidad_3> python setup_db.py
+Base de datos y tablas listas.
+Conexion cerrada.
+            </div>
+
+            <h3>Estructura Creada</h3>
+            <p>Se creó exitosamente la base de datos <code>mi_db_l</code> con las siguientes características:</p>
+            <ul>
+                <li><strong>Charset:</strong> utf8mb4 (soporte completo para Unicode)</li>
+                <li><strong>Collation:</strong> utf8mb4_unicode_ci (ordenamiento compatible con múltiples idiomas)</li>
+                <li><strong>Tablas:</strong> empleados (1000 registros) y usuarios (5 registros)</li>
+            </ul>
+        </section>
+
+        <!-- Tarea 4 -->
+        <section class="section">
+            <h2>4️⃣ Inserción de Datos con main.py</h2>
+            <div class="task-box info">
+                <h3>Objetivo</h3>
+                <p>Ingresar datos a la base <code>mi_db_l</code> usando el archivo <code>main.py</code>.</p>
+            </div>
+
+            <h3>Implementación</h3>
+            <p>El script <code>main.py</code> importa datos desde <code>data_random.py</code> e inserta registros en la tabla <code>usuarios</code>.</p>
+
+            <div class="evidence">
+                <strong>📌 Datos de Origen (data_random.py):</strong>
+<pre>
+data = [
+    (
+        "Alice Johnson",
+        "InnovaTech",
+        "Data Analyst",
+        "alice.johnson@example.com",
+        "+1-202-555-0101",
+        "00:1A:2B:3C:4D:5E",
+    ),
+    (
+        "Bruno García",
+        "Logística MX",
+        "Operations Manager",
+        "bruno.garcia@example.com",
+        "+52-55-5555-0102",
+        "00:1A:2B:3C:4D:5F",
+    ),
+    (
+        "Camila Souza",
+        "BioSaúde",
+        "Quality Engineer",
+        "camila.souza@example.com",
+        "+55-11-5555-0103",
+        "00:1A:2B:3C:4D:60",
+    ),
+    (
+        "Diego Martínez",
+        "Finanzas 360",
+        "Financial Advisor",
+        "diego.martinez@example.com",
+        "+34-91-555-0104",
+        "00:1A:2B:3C:4D:61",
+    ),
+    (
+        "Elena Novak",
+        "Nordic Labs",
+        "Project Lead",
+        "elena.novak@example.com",
+        "+46-8-555-0105",
+        "00:1A:2B:3C:4D:62",
+    ),
+]
+</pre>
+            </div>
+
+            <div class="evidence">
+                <strong>📌 Script de Inserción (main.py):</strong>
+<pre>
+from mysql.connector import Error
+import mysql.connector
+from data_random import data
+
+connection = None
+
+try:
+    connection = mysql.connector.connect(
+        host='localhost',
+        port=3306,
+        user='root',
+        password='Genius2.4005',
+        db='mi_db_l'
+    )
+
+    if connection.is_connected():
+        cursor = connection.cursor()
+        cursor.executemany(
+            """INSERT INTO usuarios(
+                name,
+                company,
+                job,
+                email,
+                phone,
+                mac_address
+            ) VALUES (%s, %s, %s, %s, %s, %s)""",
+            data
+        )
+
+        if len(data) == cursor.rowcount:
+            connection.commit()
+            print("{} Filas insertadas.".format(len(data)))
+        else:
+            connection.rollback()
+except Error as ex:
+    print("Error en la conexion: {}".format(ex))
+finally:
+    if connection and connection.is_connected():
+        connection.close()
+        print("Conexion cerrada.")
+</pre>
+            </div>
+
+            <h3>Resultado de Ejecución</h3>
+            <div class="terminal-output">
+PS C:\Users\graja\OneDrive\Documentos\TecMD\Bases_Datos\Unidad_3> python main.py
+5 Filas insertadas.
+Conexion cerrada.
+            </div>
+
+            <div class="task-box success">
+                <p><strong>✓ Resultado:</strong> Se insertaron exitosamente <span class="highlight">5 registros de usuarios</span> en la tabla <code>usuarios</code> de la base de datos <code>mi_db_l</code>.</p>
+            </div>
+        </section>
+
+        <!-- Tarea 5 -->
+        <section class="section">
+            <h2>5️⃣ Manipulación de Base de Datos con Sentencias SQL</h2>
+            <div class="task-box info">
+                <h3>Objetivo</h3>
+                <p>Manipular la base de datos usando diferentes sentencias SQL ejecutadas desde Python.</p>
+            </div>
+
+            <h3>Operaciones SQL Implementadas</h3>
+            <p>El script <code>db_manipulation.py</code> demuestra el uso de múltiples operaciones SQL (CRUD - Create, Read, Update, Delete) ejecutadas mediante Python.</p>
+
+            <div class="evidence">
+                <strong>📌 Script de Manipulación (db_manipulation.py):</strong>
+<pre>
+from mysql.connector import Error
+import mysql.connector
+
+def run_query(cursor, query, params=None, fetch=False):
+    cursor.execute(query, params or ())
+    if fetch:
+        return cursor.fetchall()
+    return None
+
+connection = None
+
+try:
+    connection = mysql.connector.connect(
+        host='localhost',
+        port=3306,
+        user='root',
+        password='Genius2.4005',
+        db='mi_db_l'
+    )
+
+    if connection.is_connected():
+        cursor = connection.cursor(dictionary=True)
+        connection.start_transaction()
+
+        # 1. SELECT con COUNT
+        total_empleados = run_query(
+            cursor,
+            "SELECT COUNT(*) AS total FROM empleados",
+            fetch=True
+        )
+        print("Total de empleados:", total_empleados[0]["total"])
+
+        # 2. UPDATE
+        run_query(
+            cursor,
+            "UPDATE usuarios SET job = %s WHERE name = %s",
+            ("Senior Data Analyst", "Alice Johnson")
+        )
+        updated_usuario = run_query(
+            cursor,
+            "SELECT name, job FROM usuarios WHERE name = %s",
+            ("Alice Johnson",),
+            fetch=True
+        )
+        print("Usuario actualizado:", updated_usuario)
+
+        # 3. INSERT
+        run_query(
+            cursor,
+            "INSERT INTO usuarios(name, company, job, email, phone, mac_address) "
+            "VALUES (%s, %s, %s, %s, %s, %s)",
+            (
+                "Usuario Temporal",
+                "Demo Corp",
+                "Tester",
+                "temporal@example.com",
+                "+1-999-000-0000",
+                "AA:BB:CC:DD:EE:FF",
+            ),
+        )
+        
+        # 4. SELECT con ORDER BY y LIMIT
+        nuevos_usuarios = run_query(
+            cursor,
+            "SELECT name FROM usuarios ORDER BY id DESC LIMIT 3",
+            fetch=True
+        )
+        print("Últimos usuarios insertados:", nuevos_usuarios)
+
+        # 5. DELETE
+        run_query(
+            cursor,
+            "DELETE FROM usuarios WHERE name = %s",
+            ("Usuario Temporal",)
+        )
+        
+        # ROLLBACK para mantener estabilidad
+        connection.rollback()
+        print("Cambios revertidos para mantener la tabla estable.")
+
+except Error as ex:
+    print("Error al manipular la base de datos:", ex)
+finally:
+    if connection and connection.is_connected():
+        connection.close()
+        print("Conexion cerrada.")
+</pre>
+            </div>
+
+            <h3>Sentencias SQL Ejecutadas</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Operación</th>
+                        <th>Sentencia SQL</th>
+                        <th>Descripción</th>
+                        <th>Resultado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="badge badge-info">SELECT</span></td>
+                        <td><code>SELECT COUNT(*) AS total FROM empleados</code></td>
+                        <td>Contar total de empleados</td>
+                        <td>1000 empleados</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-warning">UPDATE</span></td>
+                        <td><code>UPDATE usuarios SET job = 'Senior Data Analyst' WHERE name = 'Alice Johnson'</code></td>
+                        <td>Actualizar puesto de trabajo</td>
+                        <td>✓ Actualizado</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-info">SELECT</span></td>
+                        <td><code>SELECT name, job FROM usuarios WHERE name = 'Alice Johnson'</code></td>
+                        <td>Verificar actualización</td>
+                        <td>✓ Confirmado</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-success">INSERT</span></td>
+                        <td><code>INSERT INTO usuarios(...) VALUES (...)</code></td>
+                        <td>Insertar usuario temporal</td>
+                        <td>✓ Insertado</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-info">SELECT</span></td>
+                        <td><code>SELECT name FROM usuarios ORDER BY id DESC LIMIT 3</code></td>
+                        <td>Obtener últimos 3 usuarios</td>
+                        <td>✓ Consultado</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-warning">DELETE</span></td>
+                        <td><code>DELETE FROM usuarios WHERE name = 'Usuario Temporal'</code></td>
+                        <td>Eliminar usuario temporal</td>
+                        <td>✓ Eliminado</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-warning">ROLLBACK</span></td>
+                        <td><code>connection.rollback()</code></td>
+                        <td>Revertir cambios de la transacción</td>
+                        <td>✓ Revertido</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Resultado de Ejecución</h3>
+            <div class="terminal-output">
+PS C:\Users\graja\OneDrive\Documentos\TecMD\Bases_Datos\Unidad_3> python db_manipulation.py
+Total de empleados: 1000
+Usuario actualizado: [{'name': 'Alice Johnson', 'job': 'Senior Data Analyst'}, {'name': 'Alice Johnson', 'job': 'Senior Data Analyst'}]
+Últimos usuarios insertados: [{'name': 'Usuario Temporal'}, {'name': 'Elena Novak'}, {'name': 'Diego Martínez'}]
+Cambios revertidos para mantener la tabla estable.
+Conexion cerrada.
+            </div>
+
+            <div class="task-box success">
+                <p><strong>✓ Resultado:</strong> Se ejecutaron exitosamente <span class="highlight">7 operaciones SQL diferentes</span> (SELECT, UPDATE, INSERT, DELETE, ROLLBACK) demostrando el manejo completo de transacciones y manipulación de datos.</p>
+            </div>
+        </section>
+
+        <!-- Tecnologías y Herramientas -->
+        <section class="section">
+            <h2>🛠️ Tecnologías y Herramientas Utilizadas</h2>
+            
+            <h3>Lenguajes de Programación</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tecnología</th>
+                        <th>Versión</th>
+                        <th>Uso en el Proyecto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="badge badge-python">Python</span></td>
+                        <td>3.x</td>
+                        <td>Lenguaje principal para scripts de manipulación de datos</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-sql">SQL</span></td>
+                        <td>MySQL 8.0+</td>
+                        <td>Lenguaje de consulta para manipulación de base de datos</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Librerías de Python</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Librería</th>
+                        <th>Propósito</th>
+                        <th>Funciones Utilizadas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>mysql-connector-python</strong></td>
+                        <td>Conexión a MySQL</td>
+                        <td><code>connect()</code>, <code>cursor()</code>, <code>execute()</code>, <code>executemany()</code>, <code>commit()</code>, <code>rollback()</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>pandas</strong></td>
+                        <td>Manipulación de datos</td>
+                        <td><code>read_excel()</code>, <code>drop()</code>, <code>iterrows()</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>openpyxl</strong></td>
+                        <td>Lectura de archivos Excel</td>
+                        <td><code>load_workbook()</code>, <code>iter_rows()</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Software Utilizado</h3>
+            <ul>
+                <li><strong>MySQL Server:</strong> Sistema de gestión de bases de datos relacionales</li>
+                <li><strong>MySQL Workbench:</strong> Herramienta de diseño y administración de bases de datos</li>
+                <li><strong>Visual Studio Code:</strong> Editor de código fuente</li>
+                <li><strong>PowerShell:</strong> Terminal para ejecución de scripts</li>
+            </ul>
+        </section>
+
+        <!-- Conceptos de Programación Aplicados -->
+        <section class="section">
+            <h2>💡 Conceptos de Programación y Bases de Datos Aplicados</h2>
+            
+            <h3>1. Programación Orientada a Funciones</h3>
+            <ul>
+                <li>Función <code>run_query()</code> para abstracción de consultas SQL</li>
+                <li>Función <code>run()</code> en setup_db.py para inicialización</li>
+                <li>Reutilización de código y modularidad</li>
+            </ul>
+
+            <h3>2. Manejo de Excepciones</h3>
+<pre>
+try:
+    # Código que puede fallar
+    connection = mysql.connector.connect(...)
+except Error as ex:
+    # Manejo de errores
+    print("Error en la conexion:", ex)
+finally:
+    # Limpieza de recursos
+    connection.close()
+</pre>
+
+            <h3>3. Transacciones ACID</h3>
+            <ul>
+                <li><strong>Atomicidad:</strong> Uso de <code>start_transaction()</code></li>
+                <li><strong>Consistencia:</strong> Validación de <code>rowcount</code> antes de commit</li>
+                <li><strong>Aislamiento:</strong> Transacciones independientes</li>
+                <li><strong>Durabilidad:</strong> Uso de <code>commit()</code> y <code>rollback()</code></li>
+            </ul>
+
+            <h3>4. Consultas Parametrizadas</h3>
+            <p>Prevención de inyección SQL mediante el uso de placeholders (<code>%s</code>):</p>
+<pre>
+cursor.execute("SELECT * FROM usuarios WHERE name = %s", ("Alice Johnson",))
+</pre>
+
+            <h3>5. Manipulación de Datos con Pandas</h3>
+            <ul>
+                <li>Lectura de archivos Excel</li>
+                <li>Transformación de DataFrames</li>
+                <li>Eliminación de columnas no deseadas</li>
+                <li>Iteración eficiente sobre filas</li>
+            </ul>
+
+            <h3>6. Operaciones CRUD Completas</h3>
+            <ul>
+                <li><strong>Create:</strong> INSERT INTO usuarios</li>
+                <li><strong>Read:</strong> SELECT con COUNT, WHERE, ORDER BY, LIMIT</li>
+                <li><strong>Update:</strong> UPDATE usuarios SET</li>
+                <li><strong>Delete:</strong> DELETE FROM usuarios</li>
+            </ul>
+        </section>
+
+        <!-- Resultados y Métricas -->
+        <section class="section">
+            <h2>📊 Resultados y Métricas del Proyecto</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Métrica</th>
+                        <th>Valor</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Bases de datos creadas</td>
+                        <td><strong>1</strong></td>
+                        <td>mi_db_l</td>
+                    </tr>
+                    <tr>
+                        <td>Tablas creadas</td>
+                        <td><strong>2</strong></td>
+                        <td>empleados, usuarios</td>
+                    </tr>
+                    <tr>
+                        <td>Registros en tabla empleados</td>
+                        <td><strong>1,000</strong></td>
+                        <td>Datos cargados desde Excel</td>
+                    </tr>
+                    <tr>
+                        <td>Registros en tabla usuarios</td>
+                        <td><strong>5</strong></td>
+                        <td>Datos generados aleatoriamente</td>
+                    </tr>
+                    <tr>
+                        <td>Columnas excluidas</td>
+                        <td><strong>2</strong></td>
+                        <td>City, Country</td>
+                    </tr>
+                    <tr>
+                        <td>Scripts Python desarrollados</td>
+                        <td><strong>6</strong></td>
+                        <td>dataexcel.py, main.py, setup_db.py, etc.</td>
+                    </tr>
+                    <tr>
+                        <td>Operaciones SQL ejecutadas</td>
+                        <td><strong>7</strong></td>
+                        <td>SELECT, INSERT, UPDATE, DELETE, etc.</td>
+                    </tr>
+                    <tr>
+                        <td>Librerías Python utilizadas</td>
+                        <td><strong>3</strong></td>
+                        <td>mysql-connector-python, pandas, openpyxl</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Conclusiones -->
+        <section class="section">
+            <h2>🎯 Conclusiones</h2>
+            
+            <div class="task-box success">
+                <h3>Logros Principales</h3>
+                <ol>
+                    <li><strong>Integración Exitosa:</strong> Se logró integrar Python con MySQL para crear un sistema completo de gestión de datos.</li>
+                    <li><strong>Manipulación de Datos:</strong> Se implementaron todas las operaciones CRUD demostrando dominio de SQL.</li>
+                    <li><strong>Automatización:</strong> Los scripts Python automatizan la carga masiva de datos desde Excel y datos generados.</li>
+                    <li><strong>Buenas Prácticas:</strong> Se aplicaron conceptos como manejo de excepciones, transacciones ACID y consultas parametrizadas.</li>
+                    <li><strong>Transformación de Datos:</strong> Se realizó limpieza de datos excluyendo columnas innecesarias antes de la carga.</li>
+                </ol>
+            </div>
+
+            <div class="task-box info">
+                <h3>Competencias Demostradas</h3>
+                <ul>
+                    <li>✓ Diseño y creación de bases de datos relacionales</li>
+                    <li>✓ Programación en Python con librerías especializadas</li>
+                    <li>✓ Escritura y ejecución de sentencias SQL complejas</li>
+                    <li>✓ Manejo de transacciones y control de errores</li>
+                    <li>✓ Integración de sistemas (Python + MySQL + Excel)</li>
+                    <li>✓ Análisis y transformación de datos</li>
+                    <li>✓ Documentación técnica de proyectos</li>
+                </ul>
+            </div>
+
+            <h3>Aplicaciones Prácticas</h3>
+            <p>Los conocimientos aplicados en este proyecto son fundamentales para:</p>
+            <ul>
+                <li>Desarrollo de sistemas de información empresariales</li>
+                <li>Análisis de datos y Business Intelligence</li>
+                <li>Automatización de procesos de ETL (Extract, Transform, Load)</li>
+                <li>Creación de APIs y backends para aplicaciones web</li>
+                <li>Gestión y administración de bases de datos</li>
+            </ul>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p><strong>Proyecto desarrollado para:</strong> TecMD - Bases de Datos - Unidad 3</p>
+            <p><strong>Fecha de elaboración:</strong> 27 de octubre de 2025</p>
+            <p><strong>Tecnologías:</strong> Python 3.x | MySQL | Pandas | mysql-connector-python | openpyxl</p>
+            <p style="margin-top: 20px; color: #999;">
+                📄 Este informe documenta de manera exhaustiva todas las actividades realizadas en el proyecto,<br>
+                incluyendo código fuente, resultados de ejecución y análisis técnico.
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

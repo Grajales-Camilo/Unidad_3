@@ -1,0 +1,42 @@
+data = [
+    (
+        "Alice Johnson",
+        "InnovaTech",
+        "Data Analyst",
+        "alice.johnson@example.com",
+        "+1-202-555-0101",
+        "00:1A:2B:3C:4D:5E",
+    ),
+    (
+        "Bruno García",
+        "Logística MX",
+        "Operations Manager",
+        "bruno.garcia@example.com",
+        "+52-55-5555-0102",
+        "00:1A:2B:3C:4D:5F",
+    ),
+    (
+        "Camila Souza",
+        "BioSaúde",
+        "Quality Engineer",
+        "camila.souza@example.com",
+        "+55-11-5555-0103",
+        "00:1A:2B:3C:4D:60",
+    ),
+    (
+        "Diego Martínez",
+        "Finanzas 360",
+        "Financial Advisor",
+        "diego.martinez@example.com",
+        "+34-91-555-0104",
+        "00:1A:2B:3C:4D:61",
+    ),
+    (
+        "Elena Novak",
+        "Nordic Labs",
+        "Project Lead",
+        "elena.novak@example.com",
+        "+46-8-555-0105",
+        "00:1A:2B:3C:4D:62",
+    ),
+]
